@@ -41,7 +41,7 @@ function restricted(req, res, next) {
     if (password === 'mellon') {
         next();
     } else {
-        res.status(401).send('You shall not pass Balrog!');
+        res.status(401).send('Welcome to the webapi-iii-challenge');
     }
 }
 
