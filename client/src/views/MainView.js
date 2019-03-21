@@ -48,6 +48,9 @@ class MainView extends Component {
                             </Grid.Column>
                         );
                     })}
+                    <Grid.Column >
+                        <UserCard name={''} id={null} image={"./media/image.png"}/>
+                    </Grid.Column>
                 </Grid>
             </Container>
         );

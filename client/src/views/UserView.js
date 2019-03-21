@@ -3,10 +3,8 @@ import axios from 'axios';
 import {Image, Grid, Header, Container} from 'semantic-ui-react';
 import Posts from '../components/Posts.';
 
+
 const style = {
-
-    
-
     userImage: {
         maxHeight: "500px",
     },
@@ -19,7 +17,7 @@ const style = {
     },
     header: {
         fontSize: "5rem",
-        fontFamily: 'Pacifico, cursive'
+        fontFamily: 'Pacifico, cursive',
     }
 };
 
