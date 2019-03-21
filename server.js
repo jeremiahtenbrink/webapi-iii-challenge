@@ -1,10 +1,12 @@
 const express = require('express'); // importing a CommonJS module
 const helmet = require('helmet');
+const cors = require('cors');
 
 const postsRouter = require('./routers/posts-router');
 const usersRouter = require('./routers/users-router');
 
 const server = express();
+server.use(cors());
 
 // global middleware
 function checkForCapital(req, res, next) {
@@ -20,12 +22,10 @@ function teamNamer(req, res, next) {
 }
 
 server.use(express.json()); // built-in, no need to yarn add
-server.use(helmet()); // third party, need to npm install or yarn add it
-server.use(checkForCapital);
 
 // routing
 server.use('/posts', postsRouter);
-server.use('/users', usersRouter);
+server.use('/users', checkForCapital, usersRouter);
 
 // route handlers ARE middleware
 server.get('/', restricted, (req, res) => {

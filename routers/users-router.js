@@ -2,10 +2,15 @@ const express = require('express');
 
 const Users = require('../data/helpers/userDb');
 
+
+const {up} = require('../data/migrations/20180404090411_bootstrap');
+const db = require('../data/dbConfig.js');
+
 const router = express.Router();
 
 // this only runs if the url has /users
 router.get('/', async (req, res) => {
+    
     try {
         const users = await Users.get();
         res.status(200).json(users);
@@ -84,6 +89,7 @@ router.put('/:id', async (req, res) => {
         }
     
         user.name = req.body.name || user.name;
+        user.image = req.body.image || user.image;
         let result = await Users.update(req.params.id, user);
         if(result){
             res.status(200).json({message: "The user was updated successfully"});
@@ -95,16 +101,16 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.get('/users/posts/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
     try {
         if(!req.params.id){
             throw error(400, "Please include a user ID in the params.");
         }
         let id = req.params.id;
         
-        let usersPosts = Users.getUserPosts(id);
+        let usersPosts = await Users.getUserPosts(id);
         if(usersPosts){
-            req.status(200).json(usersPosts);
+            res.status(200).json(usersPosts);
         }else {
             throw error(404, "That user or users posts does not exist.");
         }
