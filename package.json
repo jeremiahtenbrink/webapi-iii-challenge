@@ -4,7 +4,9 @@
   "description": "Web API Blog Project",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"ERROR: NO TEST SPECIFIED\" && exit 1,"
   },
   "repository": {
     "type": "git",
