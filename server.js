@@ -7,7 +7,7 @@ const usersRouter = require('./routers/users-router');
 
 const server = express();
 server.use(cors());
-
+server.use(helmet());
 // global middleware
 function checkForCapital(req, res, next) {
     if((req.method === "POST" || req.method === "PUT") && req.body.name){
